@@ -125,6 +125,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 async def serve_app():
     """
     Serve the frontend application
+
+
+
     
     """
     with open("static/index.html", "r") as f:
