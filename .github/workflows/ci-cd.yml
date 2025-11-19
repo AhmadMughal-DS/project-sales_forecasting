@@ -26,14 +26,23 @@ jobs:
             echo "🚀 Starting deployment on Azure VM..."
             
             # Navigate to project directory
-            cd /home/${{ secrets.VM_USERNAME }}/sales-forecasting || mkdir -p /home/${{ secrets.VM_USERNAME }}/sales-forecasting && cd /home/${{ secrets.VM_USERNAME }}/sales-forecasting
+            PROJECT_DIR="/home/${{ secrets.VM_USERNAME }}/sales-forecasting"
+            
+            if [ ! -d "$PROJECT_DIR" ]; then
+              echo "📁 Creating project directory..."
+              mkdir -p "$PROJECT_DIR"
+            fi
+            
+            cd "$PROJECT_DIR"
             
             # Pull latest code
             echo "📥 Pulling latest code from GitHub..."
             if [ -d ".git" ]; then
+              git fetch origin
+              git reset --hard origin/${{ github.ref_name }}
               git pull origin ${{ github.ref_name }}
             else
-              git clone ${{ github.repositoryUrl }} .
+              git clone https://github.com/AhmadMughal-DS/project-sales_forecasting.git .
               git checkout ${{ github.ref_name }}
             fi
             
@@ -54,3 +63,4 @@ jobs:
             docker image prune -f
             
             echo "✅ Deployment completed successfully!"
+            echo "🌐 Application running at: http://${{ secrets.VM_HOST }}:8000"
