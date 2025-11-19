@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linear Regression Model</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Sales Forecasting System</h1>
+            <p class="subtitle">Predict sales based on advertising spend using machine learning</p>
+        </header>
+
+        <div class="status-bar" id="statusBar">
+            <span id="modelStatus">Model Status: Not Trained</span>
+        </div>
+
+        <div class="content-grid">
+            <!-- Training Section -->
+            <div class="card">
+                <h2>📊 Train Model</h2>
+                <p class="description">Enter advertising spend (₹ thousands) and sales revenue (₹ lakhs) to train the model</p>
+                
+                <div class="form-group">
+                    <label for="trainX">Advertising Spend (₹ thousands):</label>
+                    <input type="text" id="trainX" placeholder="10, 20, 30, 40, 50" value="10, 20, 30, 40, 50, 60, 70, 80">
+                </div>
+
+                <div class="form-group">
+                    <label for="trainY">Sales Revenue (₹ lakhs):</label>
+                    <input type="text" id="trainY" placeholder="25, 45, 65, 85, 105" value="25, 45, 65, 85, 105, 125, 145, 165">
+                </div>
+
+                <button class="btn btn-primary" onclick="trainModel()">Train Model</button>
+
+                <div id="trainingResult" class="result-box"></div>
+            </div>
+
+            <!-- Prediction Section -->
+            <div class="card">
+                <h2>🎯 Forecast Sales</h2>
+                <p class="description">Enter advertising budget to forecast expected sales revenue</p>
+                
+                <div class="form-group">
+                    <label for="predictX">Advertising Spend (₹ thousands):</label>
+                    <input type="text" id="predictX" placeholder="90, 100, 120">
+                </div>
+
+                <button class="btn btn-success" onclick="makePrediction()">Forecast Sales</button>
+
+                <div id="predictionResult" class="result-box"></div>
+            </div>
+        </div>
+
+        <!-- Visualization Section -->
+        <div class="card visualization-card">
+            <h2>📈 Visualization</h2>
+            <canvas id="chartCanvas" width="800" height="400"></canvas>
+        </div>
+
+        <footer>
+            <p>Built with FastAPI, scikit-learn, and vanilla JavaScript</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
