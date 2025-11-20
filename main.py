@@ -85,6 +85,9 @@ async def train_model(data: TrainingData):
 async def predict(data: PredictionInput):
     """
     Make predictions using the trained model
+
+
+    
     """
     global model, model_trained
     
