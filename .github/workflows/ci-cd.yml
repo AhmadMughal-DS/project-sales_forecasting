@@ -60,7 +60,7 @@ jobs:
             
             # Clean up old images
             echo "🧹 Cleaning up old Docker images..."
-            docker image prune -f
+            #docker image prune -f
             
             echo "✅ Deployment completed successfully!"
             echo "🌐 Application running at: http://${{ secrets.VM_HOST }}:8000"
